@@ -11,12 +11,6 @@ var FETCH = "fetch";
 var TICKET_ID = "ticketId";
 var APPROVE = "approve";
 
-var serv = {
-    keso : function() {
-	
-    }
-};
-
 var srv = http.createServer(function (req, res) {
 
     var nextId = function(application, callback) {
