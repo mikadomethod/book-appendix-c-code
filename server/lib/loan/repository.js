@@ -37,7 +37,6 @@ var repo = {
     },
 
     fetch : function(ticketId, callback) {
-	console.log(server);
 	fs.readFile(LOAN_DIR + ticketId + '.data', 
 		    function(err, data) {
 			if (err) {
