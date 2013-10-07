@@ -1,5 +1,4 @@
 var fs = require('fs');
-var server = require('../mik-loan.js');
 
 var LOAN_DIR = 'loans/';
 
