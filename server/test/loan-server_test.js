@@ -22,11 +22,11 @@ var loan_server = require('../lib/loan-server.js');
     test.ifError(value)
 */
 
-exports['awesome'] = {
+exports['Loan Server'] = {
     setUp: function(done) {
 	done();
     },
-    'no args': function(test) {
+    'apply': function(test) {
 	var server = loan_server.start();
 	test.equal(server(), 'awesome', 'should be awesome.');
 	test.done();
