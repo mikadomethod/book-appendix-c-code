@@ -11,7 +11,9 @@ var FETCH = "fetch";
 var TICKET_ID = "ticketId";
 var APPROVE = "approve";
 
-var srv = http.createServer(function (req, res) {
+var server = {
+    start : function() {
+    return function (req, res) {
 
     var nextId = function(application, callback) {
 	fs.readdir('loans/', function determineNextId(err, data) {
@@ -52,4 +54,10 @@ var srv = http.createServer(function (req, res) {
     }
 
     res.end('Incorrect parameters provided\n');
-}).listen(8080);
+    };
+    }
+};
+
+module.exports = server;
+
+var srv = http.createServer(server.start()).listen(8080);
