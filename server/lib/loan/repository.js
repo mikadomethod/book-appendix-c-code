@@ -3,7 +3,7 @@ var fs = require('fs');
 var LOAN_DIR = 'loans/';
 
 var repo = {
-    toDisk : function(application, callback, id) {
+    toDisk : function(application, id) {
 	application.approved = false;
 	application.applicationNo = id;
 	fs.writeFile(LOAN_DIR + id + '.data', 
