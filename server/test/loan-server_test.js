@@ -8,7 +8,12 @@ exports['Loan Server'] = {
     },
     'apply': function(test) {
 	var launcher = loan_server.launch();
-	test.equal(launcher(), 'Test', 'Should return something');
+	var req = {};
+	var res = {
+	    writeHead : function() {
+	    }
+	};
+	test.equal(launcher(req, res), 'Test', 'Should return something');
 	test.done();
     },
 };

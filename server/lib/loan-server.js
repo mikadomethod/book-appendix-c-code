@@ -61,6 +61,6 @@ var server = {
     }
 }
 
-var srv = http.createServer(server.start()).listen(8080);
+var srv = http.createServer(server.launch()).listen(8080);
 
 module.exports = server;
