@@ -40,14 +40,18 @@ var srv = http.createServer(function (req, res) {
 
     } else if (query.action === 'fetch') {
 	var ticketId = query[TICKET_ID];
-        repository.fetch(ticketId, function printFetched(application) {
-	    res.end(application + '\n');
-	});
+        repository.fetch(
+	    ticketId, 
+	    function printFetched(application) {
+		res.end(application + '\n');
+	    });
 	return;
     } else if (query.action === 'approve') {
-        repository.approveLoan(query[TICKET_ID], function printTicketAfterApprove(ticket) {
-	    res.end(ticket + '\n');
-	});
+        repository.approveLoan(
+	    query[TICKET_ID], 
+	    function printTicketAfterApprove(ticket) {
+		res.end(ticket + '\n');
+	    });
 	return;
     }
 
