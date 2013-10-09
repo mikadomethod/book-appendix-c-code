@@ -8,14 +8,20 @@ exports['Loan Server'] = {
     },
     'apply': function(test) {
 	var launcher = loan_server.launch();
+	var result;
 	var req = {
-	    url : 'action=fetch&ticketId=1'
+	    url : '?action=fetch&ticketId=1'
 	};
 	var res = {
 	    writeHead : function() {
+	    },
+	    end : function(data) {
+		result = data;
 	    }
 	};
-	test.equal(launcher(req, res), 'Test', 'Should return something');
+	
+	launcher(req, res);
+	test.equal(result, '{applicationNo : 1, amount : 10000, approved : false, contact : "donald@ducks.burg"}');
 	test.done();
     },
 };
