@@ -2,17 +2,13 @@
 
 var loan_server = require('../lib/loan-server.js');
 
-exports['awesome'] = {
+exports['Loan Server'] = {
     setUp: function(done) {
-	// setup here
 	done();
     },
-    'no args': function(test) {
-	test.expect(1);
-	// tests here
-	var server = loan_server.start();
-	console.log(server);
-	test.equal(server(), 'awesome', 'should be awesome.');
+    'apply': function(test) {
+	var launcher = loan_server.launch();
+	test.equal(launcher(), 'Test', 'Should return something');
 	test.done();
     },
 };
