@@ -12,7 +12,7 @@ var TICKET_ID = "ticketId";
 var APPROVE = "approve";
 
 var server = {
-    launch : function() {
+    launch : function(repo) {
 	return function (req, res) {
 	    var nextId = function(application, callback) {
 		fs.readdir('loans/', function determineNextId(err, data) {
@@ -41,7 +41,7 @@ var server = {
 		
 	    } else if (query.action === 'fetch') {
 		var ticketId = query[TICKET_ID];
-		repository.fetch(
+		repo.fetch(
 		    ticketId, 
 		    function printFetched(application) {
 			res.end(application + '\n');
@@ -61,6 +61,6 @@ var server = {
     }
 }
 
-var srv = http.createServer(server.launch()).listen(8080);
+var srv = http.createServer(server.launch(repository)).listen(8080);
 
 module.exports = server;

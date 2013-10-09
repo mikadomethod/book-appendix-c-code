@@ -7,7 +7,8 @@ exports['Loan Server'] = {
 	done();
     },
     'apply': function(test) {
-	var launcher = loan_server.launch();
+	var repo = {};
+	var launcher = loan_server.launch(repo);
 	var result;
 	var req = {
 	    url : '?action=fetch&ticketId=1'
