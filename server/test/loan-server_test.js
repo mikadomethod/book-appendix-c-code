@@ -7,22 +7,27 @@ exports['Loan Server'] = {
 	done();
     },
     'apply': function(test) {
-	var repo = {};
+	var res = {
+	    writeHead : function() {
+	    },
+	    end : function(data) {
+		test.equals('Called\n', data);
+	    }
+	};
+
+	var repo = {
+	    fetch : function(ticketId, callback) {
+		test.equals(1, ticketId);
+		callback('Called');
+	    }
+	};
 	var launcher = loan_server.launch(repo);
 	var result;
 	var req = {
 	    url : '?action=fetch&ticketId=1'
 	};
-	var res = {
-	    writeHead : function() {
-	    },
-	    end : function(data) {
-		result = data;
-	    }
-	};
 	
 	launcher(req, res);
-	test.equal(result, '{applicationNo : 1, amount : 10000, approved : false, contact : "donald@ducks.burg"}');
 	test.done();
     },
 };
