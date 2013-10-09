@@ -8,7 +8,9 @@ exports['Loan Server'] = {
     },
     'apply': function(test) {
 	var launcher = loan_server.launch();
-	var req = {};
+	var req = {
+	    url : 'action=fetch&ticketId=1'
+	};
 	var res = {
 	    writeHead : function() {
 	    }
