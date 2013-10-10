@@ -21,13 +21,14 @@ var server = {
 
     launch : function launcher(repo, returnResult) {
 	return function (req, res) {
+
 	    var nextId = function(application, callback) {
 		fs.readdir('loans/', function determineNextId(err, data) {
 		    if (err) {
 			throw err;
 		    } else {
 			var id = data.length + 1;
-			repository.toDisk(application, callback, id);
+			repository.toDisk(application, id);
 			callback(JSON.stringify({ticketId: id}));
 		    }
 		});
