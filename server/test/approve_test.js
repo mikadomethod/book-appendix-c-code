@@ -6,14 +6,17 @@ exports['Loan Server'] = {
     setUp: function(done) {
 	done();
     },
-    'apply': function(test) {
+    'approve': function(test) {
 
 	var wasCalled = false;
-	var actualApplication;
+	var actualTicketId;
 	var repo = {
-	    store : function(data, callback) {
-		actualApplication = data;
+	    approve : function(ticketId, callback) {
+		actualTicketId = ticketId;
 	    },
+	    
+	    store : function() {
+	    }
 	};
 	
 
@@ -24,14 +27,14 @@ exports['Loan Server'] = {
 	    }
 	};
 	var request = {
-	    url : '?action=apply&amount=1000&contact=donald@ducks.burg'
+	    url : '?action=approve&ticketId=3'
 	};
 
 	var launcher = server.launch(repo, server.serveResult(response));
-
 	launcher(request, response);
-	test.equals(actualApplication.amount, 1000);
-	test.equals(actualApplication.contact, 'donald@ducks.burg');	
+	
+	test.equals(actualTicketId, 3);
+	test.equals(true, wasCalled);
 	test.done();
     },
 };

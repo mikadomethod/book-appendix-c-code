@@ -34,12 +34,10 @@ var server = {
 		return;
 		
 	    } else if (query.action === 'fetch') {
-		var ticketId = query[TICKET_ID];
-		repo.fetch(ticketId, returnResult(res)
-		);
+		repo.fetch(query[TICKET_ID], returnResult(res));
 		return;
 	    } else if (query.action === 'approve') {
-		repository.approve(query[TICKET_ID], returnResult(res));
+		repo.approve(query[TICKET_ID], returnResult(res));
 		return;
 	    }
 
