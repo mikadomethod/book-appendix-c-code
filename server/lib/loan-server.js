@@ -31,9 +31,7 @@ var server = {
 				   contact: query['contact'],
 				  };
 		repo.nextId(application, 
-		       function printTicket(ticket) {
-			   res.end(ticket + '\n');
-		       });
+			    returnResult(res));
 		return;
 		
 	    } else if (query.action === 'fetch') {
@@ -46,9 +44,8 @@ var server = {
 	    } else if (query.action === 'approve') {
 		repository.approveLoan(
 		    query[TICKET_ID], 
-		    function printTicketAfterApprove(ticket) {
-			res.end(ticket + '\n');
-		    });
+		    returnResult(res)
+		);
 		return;
 	    }
 
