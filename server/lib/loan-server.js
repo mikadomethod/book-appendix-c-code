@@ -30,22 +30,16 @@ var server = {
 		var application = {amount: query['amount'],
 				   contact: query['contact'],
 				  };
-		repo.nextId(application, 
-			    returnResult(res));
+		repo.store(application, returnResult(res));
 		return;
 		
 	    } else if (query.action === 'fetch') {
 		var ticketId = query[TICKET_ID];
-		repo.fetch(
-		    ticketId,
-		    returnResult(res)
+		repo.fetch(ticketId, returnResult(res)
 		);
 		return;
 	    } else if (query.action === 'approve') {
-		repository.approveLoan(
-		    query[TICKET_ID], 
-		    returnResult(res)
-		);
+		repository.approve(query[TICKET_ID], returnResult(res));
 		return;
 	    }
 
