@@ -22,18 +22,6 @@ var server = {
     launch : function launcher(repo, returnResult) {
 	return function (req, res) {
 
-	    var nextId = function(application, callback) {
-		fs.readdir('loans/', function determineNextId(err, data) {
-		    if (err) {
-			throw err;
-		    } else {
-			var id = data.length + 1;
-			repository.toDisk(application, id);
-			callback(JSON.stringify({ticketId: id}));
-		    }
-		});
-	    }
-
 	    res.writeHead(200, {'Content-Type': 'application/json'});
 	    var url_parts = url.parse(req.url, true);
 	    var query = url_parts.query;
@@ -42,7 +30,7 @@ var server = {
 		var application = {amount: query['amount'],
 				   contact: query['contact'],
 				  };
-		nextId(application, 
+		repo.nextId(application, 
 		       function printTicket(ticket) {
 			   res.end(ticket + '\n');
 		       });

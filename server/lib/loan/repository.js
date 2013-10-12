@@ -17,6 +17,19 @@ var repo = {
 		     });
     },
 
+    nextId : function (application, callback) {
+	fs.readdir('loans/', function determineNextId(err, data) {
+	    if (err) {
+		throw err;
+	    } else {
+		var id = data.length + 1;
+		repo.toDisk(application, id);
+		callback(JSON.stringify({ticketId: id}));
+	    }
+	});
+    },
+
+
     approveLoan : function(ticketId, callback) {
 	fs.readFile(
 	    LOAN_DIR + ticketId + '.data', 
