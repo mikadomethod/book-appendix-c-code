@@ -9,7 +9,12 @@ exports['Loan Server'] = {
     'apply': function(test) {
 
 	var wasCalled = false;
-	var repo = {};
+	var actualApplication;
+	var repo = {
+	    nextId : function(data, callback) {
+		actualApplication = data;
+	    }
+	};
 	
 
 	var response = {
@@ -24,8 +29,9 @@ exports['Loan Server'] = {
 
 	var launcher = server.launch(repo, server.serveResult(response));
 
-	// launcher(request, response);
-	// test.equals(true, wasCalled);
+	launcher(request, response);
+	test.equals(actualApplication.amount, 1000);
+	test.equals(actualApplication.contact, 'donald@ducks.burg');	
 	test.done();
     },
 };

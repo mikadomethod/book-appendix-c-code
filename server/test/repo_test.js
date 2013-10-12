@@ -8,8 +8,22 @@ exports['Repository'] = {
     },
     'loanId': function(test) {
 
-	repo.nextId();
-	// test.equals(true, wasCalled);
+	var savedToDisk = false;
+	var mockRepo = {
+	    toDisk : function() {
+		savedToDisk = true;
+	    }
+	};
+	
+	var actualResult;
+	var callback = function(data) {
+	    actualResult = data;
+	}
+
+	var generateNextId = repo.determineNextId(null, callback, mockRepo);
+	generateNextId(null, ['1.data', "2.data"]);
+	test.equals('{"ticketId":3}', actualResult);
+	test.equals(true, savedToDisk);
 	test.done();
     },
 };

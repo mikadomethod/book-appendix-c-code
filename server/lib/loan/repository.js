@@ -18,15 +18,20 @@ var repo = {
     },
 
     nextId : function (application, callback) {
-	fs.readdir('loans/', function determineNextId(err, data) {
+	fs.readdir('loans/', repo.determineNextId(application, callback, repo));
+    },
+
+    determineNextId : function(application, callback, repo) {
+	return function(err, data) {
 	    if (err) {
 		throw err;
 	    } else {
 		var id = data.length + 1;
 		repo.toDisk(application, id);
+		console.log(callback);
 		callback(JSON.stringify({ticketId: id}));
 	    }
-	});
+	}
     },
 
 
