@@ -1,7 +1,6 @@
 'use strict';
 
 var repo = require('../lib/loan/repository.js');
-var server = require('../lib/loan_server.js');
 
 exports['Repository'] = {
     setUp: function(done) {
@@ -9,9 +8,7 @@ exports['Repository'] = {
     },
     'loanId': function(test) {
 
-	server.nextId();
-
-	launcher(request, response);
+	repo.nextId();
 	// test.equals(true, wasCalled);
 	test.done();
     },
