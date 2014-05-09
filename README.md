@@ -1,6 +1,12 @@
-# Loan Server 
+Appendix C example in JavaScript 
+===================
+The code from appendix C in [The Mikado Method book](http://www.manning.com/ellnestam/).
 
-Mikado tutorial for JavaScript/Node.js
+![Mikado Method book cover](http://www.manning.com/ellnestam/ellnestam_cover150.jpg)
+
+This example shows how to apply the Mikado Method where you don't have a compiler to assist you.
+
+# Loan Server 
 
 ## Getting Started
 Start the server with: 
