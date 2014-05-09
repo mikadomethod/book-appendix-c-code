@@ -6,6 +6,14 @@ The code from appendix C in [The Mikado Method book](http://www.manning.com/elln
 
 This example shows how to apply the Mikado Method where you don't have a compiler to assist you.
 
+The branches in the repo reflects the bigger steps in the refactoring.
+
+Retrieve all branches
+````
+for remote in `git branch -r`; do git branch --track ${remote#origin/} $remote; done
+git pull --all
+````
+
 # Loan Server 
 
 ## Getting Started
